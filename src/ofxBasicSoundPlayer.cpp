@@ -260,11 +260,11 @@ void ofxBasicSoundPlayer::audioOut(ofSoundBuffer& outputBuffer){
 			else{
 				buffer.stereoPan(volumesLeft.back(),volumesRight.back());
 				newBufferE.notify(this,buffer);
-				buffer.copyTo(outputBuffer);
+				buffer.addTo(outputBuffer, 0, loop);
 			}
 		}else{
   	        if (positions.size() == 1 && abs(speed - 1)<FLT_EPSILON) {
-                buffer.copyTo(outputBuffer,nFrames,nChannels,positions[0],loop);
+                buffer.addTo(outputBuffer,nFrames,nChannels,positions[0],loop);
                 outputBuffer.stereoPan(volumesLeft.back(),volumesRight.back());
             }else{
                 for(int i=0;i<(int)positions.size();i++){
